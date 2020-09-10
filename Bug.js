@@ -8,7 +8,7 @@
  */
 function sumRow(arr, row) {
     let sum = 0;
-    for (i = 0; i < arr[row].length; i++) {
+    for (let i = 0; i < arr[row].length; i++) {
         sum += arr[row][i];
     }
     return sum;
@@ -20,7 +20,7 @@ function sumRow(arr, row) {
  */
 function sum2DArray(arr) {
     let sum = 0;
-    for (i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         sum += sumRow(arr, i);
     }
     return sum;

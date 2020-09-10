@@ -57,6 +57,9 @@ class Person {
         }
     }
 
+
+
+    
     /**
      * Interact with another person if this person
      * is close enough.
@@ -65,9 +68,14 @@ class Person {
      *                         from each other for the illness to be transmitted
      */
     interactWith(other, nearDist) {
-        if (this.state == Person.STATE_INFECTED) {
-            // TODO: Fill this in.  If this person is within nearDist
+        if (this.state == Person.STATE_INFECTED && other.state == Person.STATE_UNINFECTED) {
+            // If this person is within nearDist
             // of the other person, then infect the other person
+            let dx = this.x - other.x;
+            let dy = this.y - other.y;
+            if (dx*dx + dy*dy < nearDist*nearDist) {
+                other.state = Person.STATE_INFECTED;
+            }
         }
     }
 
@@ -80,6 +88,12 @@ class Person {
         // TODO: Fill this in.  If a patient is sick, add one to the
         // variable "sickFor."  If they've been sick for "recoveryTime"
         // amount of time, then change their state to recovered
+        if (this.state == Person.STATE_INFECTED) {
+            this.sickFor += 1;
+            if (this.sickFor >= recoveryTime) {
+                this.state = Person.STATE_RECOVERED;
+            }
+        }
     }
 
 
